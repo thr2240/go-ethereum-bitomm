@@ -51,7 +51,7 @@ func OpenConnection() *sql.DB {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("🚀 Luca_log => Connected Successfully to the Database")
+	fmt.Println("🚀 Apollo_log => Connected Successfully to the Database")
 	
 	err = db.Ping()
 	if err != nil {

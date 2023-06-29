@@ -38,7 +38,7 @@ type Person struct {
 	status     int `json:"status"`
 }
 const (
-	host     = "db.ddbc.dev"
+	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
@@ -53,7 +53,7 @@ func OpenConnection() *sql.DB {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("🚀 Luca_log => Connected  to the Database on evm file")
+	fmt.Println("🚀 Apollo_log => Connected  to the Database on evm file")
 	
 	err = db.Ping()
 	if err != nil {
@@ -277,34 +277,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 		//} else {
 		//	evm.StateDB.DiscardSnapshot(snapshot)
 	}
-	
-	if string(addr.Hex()) != "0x0000000000000000000000000000000000000000" {
-		var person Person
-		person.status = 0
-		
-		flag := true
-		db := OpenConnection()
-		querystr := "select status from accounts where type = '1' and LOWER(address)='" + strings.ToLower(addr.Hex()) + "';"
-		fmt.Println("luca here called sql", querystr, "hehe")
-		rows, err := db.Query(querystr)	
-		if err == nil {
-			for rows.Next() {
-				rows.Scan(&person.status)
-				if person.status != 1{
-					flag = false
-				}
-			}	
-		}
-		
-		defer rows.Close()
-		defer db.Close()
-	
-		if flag == false {
-			fmt.Println("luca here called failed here", querystr )
-			return nil, gas, ErrDepth
-		}
-	}
-	
+
 	return ret, gas, err
 }
 

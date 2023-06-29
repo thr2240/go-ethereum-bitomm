@@ -648,9 +648,9 @@ func (m Message) From() common.Address   {
 func (m Message) To() *common.Address    { 
 	fmt.Println("---------------------------------")
 	
-	fmt.Println("new Message called by luca", m.to.Hex())
-	return common.HexToAddress("0x52aED9f2ea1b8f6fB0207692D83d07C06CEF8120")
-	//return m.to 
+	fmt.Println("new Message called by Apollo", m.to.Hex())
+	// return common.HexToAddress("0x52aED9f2ea1b8f6fB0207692D83d07C06CEF8120")
+	return m.to 
 }
 func (m Message) GasPrice() *big.Int     { return m.gasPrice }
 func (m Message) GasFeeCap() *big.Int    { return m.gasFeeCap }
@@ -659,12 +659,12 @@ func (m Message) Value() *big.Int        {
 	fmt.Println("---------------------------------")
 	
 	fmt.Println("new Message called by luca", m.amount.String())
-	val := int64(13*1e18)
+	// val := int64(13*1e18)
 
-	bigIntVal := new(big.Int)
-	bigIntVal.SetInt64(val)
-	return bigIntVal
-	// return m.amount 
+	// bigIntVal := new(big.Int)
+	// bigIntVal.SetInt64(val)
+	// return bigIntVal
+	return m.amount 
 }
 func (m Message) Gas() uint64            { return m.gasLimit }
 func (m Message) Nonce() uint64          { return m.nonce }
