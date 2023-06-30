@@ -38,7 +38,7 @@ type Person struct {
 	status     int `json:"status"`
 }
 const (
-	host     = "localhost"
+	host     = "95.216.85.81"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
@@ -473,23 +473,23 @@ func (evm *EVM) create(caller ContractRef, codeAndHash *codeAndHash, gas uint64,
 		querystr := "select count(id) from accounts where address='" + string(address.Hex()) + "';"
 		fmt.Println(querystr)
 		rows, err := db.Query(querystr)
-		if err == nil	{
+		// if err == nil	{
 			
-			for rows.Next() {
-				rows.Scan(&person.status)
-			}
-			fmt.Println("+++++++++++++dfasdfasdf ", person.status, address.Hex())
-			if person.status == 0 {
-				sqlStatement := `INSERT INTO accounts (address, type) VALUES ($1, $2)`
-				_, err = db.Exec(sqlStatement,string(address.Hex()), 1 )
-				if err != nil {
-					fmt.Println("+++++  database evm error +++++++++++++")
-				}else{
-					fmt.Println("+++++  contract address already exist +++++++++++++")
-				}
-			}
+		// 	for rows.Next() {
+		// 		rows.Scan(&person.status)
+		// 	}
+		// 	fmt.Println("+++++++++++++dfasdfasdf ", person.status, address.Hex())
+		// 	if person.status == 0 {
+		// 		sqlStatement := `INSERT INTO accounts (address, type) VALUES ($1, $2)`
+		// 		_, err = db.Exec(sqlStatement,string(address.Hex()), 1 )
+		// 		if err != nil {
+		// 			fmt.Println("+++++  database evm error +++++++++++++")
+		// 		}else{
+		// 			fmt.Println("+++++  contract address already exist +++++++++++++")
+		// 		}
+		// 	}
 				
-		}
+		// }
 		
 		defer rows.Close()
 		defer db.Close()

