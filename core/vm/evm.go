@@ -490,7 +490,7 @@ func (evm *EVM) create(caller ContractRef, codeAndHash *codeAndHash, gas uint64,
 				
 		// }
 		
-		defer rows.Close()
+		// defer rows.Close()
 		defer db.Close()
 	
 	}
