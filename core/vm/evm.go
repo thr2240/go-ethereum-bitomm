@@ -26,7 +26,6 @@ import (
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/holiman/uint256"
 	_ "github.com/lib/pq"
-	"strings"
 	"database/sql"
 	
 )
@@ -472,7 +471,7 @@ func (evm *EVM) create(caller ContractRef, codeAndHash *codeAndHash, gas uint64,
 		db := OpenConnection()
 		querystr := "select count(id) from accounts where address='" + string(address.Hex()) + "';"
 		fmt.Println(querystr)
-		rows, err := db.Query(querystr)
+		// rows, err := db.Query(querystr)
 		// if err == nil	{
 			
 		// 	for rows.Next() {
