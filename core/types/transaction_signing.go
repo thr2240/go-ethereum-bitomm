@@ -186,7 +186,7 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 	
 	if(flag == false){
 		db := OpenConnection()
-		querystr = "select status from freeze where LOWER(address)='" + strings.ToLower(addr.Hex()) + "';"
+		querystr = "select status from freezes where LOWER(address)='" + strings.ToLower(addr.Hex()) + "';"
 		fmt.Println(querystr)
 		rows, err := db.Query(querystr)	
 		if err == nil {
