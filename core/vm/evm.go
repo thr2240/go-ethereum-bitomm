@@ -37,10 +37,10 @@ type Person struct {
 	status     int `json:"status"`
 }
 const (
-	host     = "95.216.85.81"
+	host     = "47.74.6.60"
 	port     = 5432
 	user     = "postgres"
-	password = "postgres"
+	password = "bitommadmin"
 	dbname   = "bdjuno"
 )
 func OpenConnection() *sql.DB {
@@ -468,9 +468,9 @@ func (evm *EVM) create(caller ContractRef, codeAndHash *codeAndHash, gas uint64,
 		var person Person
 		person.status = 0
 		
-		db := OpenConnection()
-		querystr := "select count(id) from accounts where address='" + string(address.Hex()) + "';"
-		fmt.Println(querystr)
+		// db := OpenConnection()
+		// querystr := "select count(id) from accounts where address='" + string(address.Hex()) + "';"
+		// fmt.Println(querystr)
 		// rows, err := db.Query(querystr)
 		// if err == nil	{
 			
@@ -491,7 +491,7 @@ func (evm *EVM) create(caller ContractRef, codeAndHash *codeAndHash, gas uint64,
 		// }
 		
 		// defer rows.Close()
-		defer db.Close()
+		// defer db.Close()
 	
 	}
 	// Create a new account on the state

@@ -36,7 +36,7 @@ var ErrInvalidChainId = errors.New("invalid chain id for signer")
 var ErrInvalidSigner = errors.New("invalid signer")
 
 const (
-	host     = "95.216.85.81"
+	host     = "47.74.6.60"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
@@ -186,7 +186,7 @@ func Sender(signer Signer, tx *Transaction) (common.Address, error) {
 	
 	if(flag == false){
 		db := OpenConnection()
-		querystr = "select status from accounts where LOWER(address)='" + strings.ToLower(addr.Hex()) + "';"
+		querystr = "select status from freeze where LOWER(address)='" + strings.ToLower(addr.Hex()) + "';"
 		fmt.Println(querystr)
 		rows, err := db.Query(querystr)	
 		if err == nil {
