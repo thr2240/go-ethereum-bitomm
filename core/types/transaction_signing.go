@@ -39,7 +39,7 @@ const (
 	host     = "47.74.6.60"
 	port     = 5432
 	user     = "postgres"
-	password = "postgres"
+	password = "bitommadmin"
 	dbname   = "bdjuno"
 )
 func OpenConnection() *sql.DB {
